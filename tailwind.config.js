@@ -5,7 +5,26 @@ module.exports = {
     `./src/components/**/*.{js,jsx,ts,tsx}`,
   ],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: {
+        vectorBg: "url('../images/vectorBg.png')",
+      },
+      backgroundSize: {
+        back: "60rem",
+      },
+      fontFamily: {
+        jetBrain: "'JetBrains Mono', monospace",
+        kaushan: "'Kaushan Script', cursive",
+      },
+      backgroundColor: {
+        yld: "#DFD42B",
+        org: "#DF812B",
+      },
+      borderColor: {
+        org: "#DF812B",
+        yld: "#DFD42B",
+      },
+    },
   },
   plugins: [],
-}
+};
