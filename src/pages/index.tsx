@@ -8,7 +8,16 @@ import back from "../images/back.png";
 import design from "../images/design.png";
 import titleAch from "../images/titleAch.png";
 import comingSoon from "../images/comingSoon.png";
+import g1 from "../images/g1.jpg";
+import g2 from "../images/g2.jpg";
+import g3 from "../images/g3.jpg";
+import g4 from "../images/g4.jpg";
+import g5 from "../images/g5.jpg";
 import cancel from "../images/cancel.png";
+
+export const Head: HeadFC = () => {
+  return <title>Beranda</title>;
+};
 
 const mainPage: React.FC<PageProps> = () => {
   return (
@@ -105,12 +114,51 @@ const mainPage: React.FC<PageProps> = () => {
           <img src={comingSoon} alt="coming soon" width={200} />
         </div>
       </section>
+      <section className="h-[80vh] flex flex-col items-center px-24 py-10">
+        <h1 className="font-kaushan text-3xl relative mb-14 before:block before:absolute before:-inset-x-3 before:-inset-y-2 before:top-5 before:bg-yld">
+          <span className="relative">My Gallery</span>
+        </h1>
+        <div className="grid grid-cols-12 items-stretch gap-4">
+          <img
+            src={g2}
+            alt="my picture"
+            className="h-[10rem] w-full object-cover col-span-4"
+          />
+          <img
+            src={g5}
+            alt="my picture"
+            className="h-[10rem] w-full object-cover col-span-3"
+          />
+          <img
+            src={g1}
+            alt="my picture"
+            className="h-[10rem] w-full object-cover col-span-3"
+          />
+          <img
+            src={g3}
+            alt="my picture"
+            className="h-[10rem] w-full object-cover col-span-2"
+          />
+          <img
+            src={g4}
+            alt="my picture"
+            className="h-[10rem] w-full object-cover col-span-3"
+          />
+          <img
+            src={g1}
+            alt="my picture"
+            className="h-[10rem] w-full object-cover col-span-3"
+          />
+          <img
+            src={g2}
+            alt="my picture"
+            className="h-[10rem] w-full object-cover col-span-6"
+          />
+        </div>
+      </section>
+      <section></section>
     </main>
   );
 };
 
 export default mainPage;
-
-export const Head: HeadFC = () => {
-  return <title>Beranda</title>;
-};
