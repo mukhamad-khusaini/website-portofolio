@@ -9,7 +9,17 @@ const config: GatsbyConfig = {
   // If you use VSCode you can also use the GraphQL plugin
   // Learn more at: https://gatsby.dev/graphql-typegen
   graphqlTypegen: true,
-  plugins: ["gatsby-plugin-postcss"],
+  plugins: [
+    "gatsby-plugin-postcss",
+    {
+      resolve: "gatsby-source-google-spreadsheets",
+      options: {
+        spreadsheetId: "1ieMf4t6JGERMdQb9nbluKehaNOixu0zI4ZC_YIInIIc",
+        spreadsheetName: "achivementInput",
+        credentials: require("./keys.json"),
+      },
+    },
+  ],
 };
 
 export default config;

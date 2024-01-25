@@ -1,6 +1,7 @@
 import * as React from "react";
 import type { HeadFC, PageProps } from "gatsby";
 import Navbar from "../components/Navbar";
+import cancel from "../images/cancel.png";
 import poly from "../images/poly.png";
 import ui from "../images/ui.png";
 import dev from "../images/dev.png";
@@ -13,7 +14,10 @@ import g2 from "../images/g2.jpg";
 import g3 from "../images/g3.jpg";
 import g4 from "../images/g4.jpg";
 import g5 from "../images/g5.jpg";
-import cancel from "../images/cancel.png";
+import fb from "../images/fb.png";
+import ig from "../images/ig.png";
+import x from "../images/x.png";
+import gh from "../images/gh.png";
 
 export const Head: HeadFC = () => {
   return <title>Beranda</title>;
@@ -22,7 +26,9 @@ export const Head: HeadFC = () => {
 const mainPage: React.FC<PageProps> = () => {
   return (
     <main>
+      {/* Navbar */}
       <Navbar />
+      {/* Introduction */}
       <section className="h-[85vh] w-full bg-vectorBg bg-right bg-no-repeat flex flex-row px-24 pt-14">
         <div className="flex flex-col items-start justify-center w-[60%]">
           <h3 className="font-jetBrain text-2xl relative inline-block before:block before:absolute before:-inset-x-1 before:-inset-0 before:top-4 before:bg-yld">
@@ -50,6 +56,7 @@ const mainPage: React.FC<PageProps> = () => {
           </h2>
         </div>
       </section>
+      {/* Skill */}
       <section className="h-[15vh] bg-blk flex flex-row justify-around items-center px-8">
         <div className="flex flex-row items-center justify-center w-[20%]">
           <img className="mr-4" src={poly} alt="." />
@@ -68,6 +75,7 @@ const mainPage: React.FC<PageProps> = () => {
           <h2 className="font-kaushan text-white text-xl">Blockchain</h2>
         </div>
       </section>
+      {/* My Projects */}
       <section className="h-[80vh] bg-reactBg bg-right-top bg-no-repeat bg-[length:20rem] flex flex-col items-center px-24 py-10">
         <h1 className="font-kaushan text-3xl relative mb-14 before:block before:absolute before:-inset-x-3 before:-inset-y-2 before:top-5 before:bg-yld">
           <span className="relative">My Projects</span>
@@ -104,6 +112,7 @@ const mainPage: React.FC<PageProps> = () => {
           </div>
         </div>
       </section>
+      {/* Achivement */}
       <section className="h-[60vh] bg-blk flex flex-col items-center px-24 py-10">
         <img src={titleAch} width={200} alt="Achivement" className="mb-12" />
         <div className="flex flex-row items-center justify-center gap-6">
@@ -114,6 +123,7 @@ const mainPage: React.FC<PageProps> = () => {
           <img src={comingSoon} alt="coming soon" width={200} />
         </div>
       </section>
+      {/* My Gallery */}
       <section className="h-[80vh] flex flex-col items-center px-24 py-10">
         <h1 className="font-kaushan text-3xl relative mb-14 before:block before:absolute before:-inset-x-3 before:-inset-y-2 before:top-5 before:bg-yld">
           <span className="relative">My Gallery</span>
@@ -156,7 +166,19 @@ const mainPage: React.FC<PageProps> = () => {
           />
         </div>
       </section>
-      <section></section>
+      <section className="h-[30vh] flex flex-col items-center px-24 py-10 bg-blk bg-footerBg bg-no-repeat bg-[center_top_1rem] bg-[length:70rem] gap-2">
+        <h3 className="font-kaushan text-white text-xl">Social Media</h3>
+        <p className="font-jetBrain text-white text-[0.7rem]">Catch Me Here!</p>
+        <div className="flex flex-row items-center gap-4">
+          <img src={fb} width={35} alt="FB" />
+          <img src={ig} width={35} alt="IG" />
+          <img src={x} width={35} alt="X" />
+          <img src={gh} width={35} alt="Github" />
+        </div>
+        <p className="font-jetBrain text-white text-[0.7rem]">
+          &copy;copyright 2024 | All Right Reserved.
+        </p>
+      </section>
     </main>
   );
 };

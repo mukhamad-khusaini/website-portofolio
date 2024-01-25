@@ -9,6 +9,7 @@ module.exports = {
       backgroundImage: {
         vectorBg: "url('../images/vectorBg.png')",
         reactBg: "url('../images/reactBg.png')",
+        footerBg: "url('../images/footerBg.png')",
       },
       backgroundSize: {
         back: "60rem",
