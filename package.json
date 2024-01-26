@@ -21,6 +21,8 @@
     "gatsby-plugin-postcss": "^6.13.0",
     "gatsby-source-filesystem": "^5.13.0",
     "gatsby-source-google-spreadsheets": "^3.0.9",
+    "google-auth-library": "^9.5.0",
+    "google-spreadsheet": "^4.1.1",
     "postcss": "^8.4.32",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

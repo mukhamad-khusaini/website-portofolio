@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useEffect, useState } from "react";
 import type { HeadFC, PageProps } from "gatsby";
 import Navbar from "../components/Navbar";
 import cancel from "../images/cancel.png";
@@ -18,14 +18,57 @@ import fb from "../images/fb.png";
 import ig from "../images/ig.png";
 import x from "../images/x.png";
 import gh from "../images/gh.png";
+import { GoogleSpreadsheet } from "google-spreadsheet";
+
+declare global {
+  namespace NodeJS {
+    interface ProcessEnv {
+      KEY: string; // replace 'MY_ENV_VAR' with your variable
+      // Add as many variables as needed
+    }
+  }
+}
 
 export const Head: HeadFC = () => {
   return <title>Beranda</title>;
 };
 
 const mainPage: React.FC<PageProps> = () => {
+  const [doc, setDoc]: any = useState([]);
+  useEffect(() => {
+    const data = async () => {
+      const doc = new GoogleSpreadsheet(
+        "1ieMf4t6JGERMdQb9nbluKehaNOixu0zI4ZC_YIInIIc",
+        { apiKey: process.env.KEY }
+      );
+
+      await doc.loadInfo(); // loads document properties and worksheets
+      const sheet = doc.sheetsByIndex[0];
+      const rows = await sheet.getRows();
+      setDoc(rows[0]);
+    };
+
+    data();
+  }, []);
+
+  useEffect(() => {
+    const data = async () => {
+      const infoce = new GoogleSpreadsheet(
+        "1afgYlFQLcdNMTnOuBU1bEW9_KAAipaEcb5ORAFrtSqA",
+        { apiKey: process.env.KEY }
+      );
+
+      await infoce.loadInfo(); // loads document properties and worksheets
+      const infoces = infoce.sheetsByIndex[0];
+      const inf = await infoces.getRows();
+    };
+
+    data();
+  }, []);
+
   return (
     <main>
+      <h1>{doc._rawData}</h1>
       {/* Navbar */}
       <Navbar />
       {/* Introduction */}
