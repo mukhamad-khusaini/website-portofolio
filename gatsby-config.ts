@@ -2,8 +2,7 @@ import type { GatsbyConfig } from "gatsby";
 
 const config: GatsbyConfig = {
   siteMetadata: {
-    title: `Website-Portofolio`,
-    siteUrl: `https://www.yourdomain.tld`,
+    title: `Portofolio Mukhamad Khusaini`,
   },
   // More easily incorporate content into your pages through automatic TypeScript type generation and better GraphQL IntelliSense.
   // If you use VSCode you can also use the GraphQL plugin
@@ -15,7 +14,6 @@ const config: GatsbyConfig = {
       resolve: "gatsby-source-google-spreadsheets",
       options: {
         spreadsheetId: "1ieMf4t6JGERMdQb9nbluKehaNOixu0zI4ZC_YIInIIc",
-        spreadsheetName: "achivementInput",
         credentials: require("./keys.json"),
       },
     },

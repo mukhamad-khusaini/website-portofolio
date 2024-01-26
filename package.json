@@ -20,7 +20,7 @@
     "gatsby": "^5.13.0",
     "gatsby-plugin-postcss": "^6.13.0",
     "gatsby-source-filesystem": "^5.13.0",
-    "gatsby-source-google-spreadsheet": "^2.0.0",
+    "gatsby-source-google-spreadsheets": "^3.0.9",
     "postcss": "^8.4.32",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
