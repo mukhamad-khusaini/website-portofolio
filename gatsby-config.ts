@@ -21,6 +21,18 @@ const config: GatsbyConfig = {
         credentials: require("./keys.json"),
       },
     },
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `Website Portofolio | Mukhamad Khusaini`,
+        short_name: `webMukhamadKhusaini`,
+        start_url: `/`,
+        background_color: `#FFFFFF`,
+        theme_color: `#DFD42B`,
+        display: `standalone`,
+        icon: "src/images/fav.png",
+      },
+    },
   ],
 };
 

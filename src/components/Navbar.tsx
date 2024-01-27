@@ -8,12 +8,44 @@ export default function Navbar() {
         <img width={100} src={logo} alt="logo" />
       </div>
       <div className="w-[70%] flex flex-row justify-around items-center font-jetBrain">
-        <p>Intro</p>
-        <p>Portfolios</p>
-        <p>Achivement</p>
-        <p>Testimonials</p>
-        <p>Socials</p>
-        <a className="bg-yld px-3 py-1 rounded-t-xl" href="/">
+        <p
+          className="cursor-pointer select-none"
+          onClick={() =>
+            document.getElementById("introduction")?.scrollIntoView()
+          }
+        >
+          Intro
+        </p>
+        <p
+          className="cursor-pointer select-none"
+          onClick={() => document.getElementById("skill")?.scrollIntoView()}
+        >
+          Skills
+        </p>
+        <p
+          className="cursor-pointer select-none"
+          onClick={() => document.getElementById("projects")?.scrollIntoView()}
+        >
+          Projects
+        </p>
+        <p
+          className="cursor-pointer select-none"
+          onClick={() =>
+            document.getElementById("achivement")?.scrollIntoView()
+          }
+        >
+          Achivement
+        </p>
+        <p
+          className="cursor-pointer select-none"
+          onClick={() => document.getElementById("gallery")?.scrollIntoView()}
+        >
+          Gallery
+        </p>
+        <a
+          className="bg-yld px-3 py-1 rounded-t-xl select-none"
+          href="https://wa.me/6488802791094"
+        >
           Catch Me!
         </a>
       </div>
