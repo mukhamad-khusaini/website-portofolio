@@ -19,6 +19,7 @@ import ig from "../images/ig.png";
 import x from "../images/x.png";
 import gh from "../images/gh.png";
 import { GoogleSpreadsheet } from "google-spreadsheet";
+import MyDialog from "../components/Dialog";
 
 declare global {
   namespace NodeJS {
@@ -40,6 +41,10 @@ const mainPage: React.FC<PageProps> = () => {
 
   // *** State Gallery
   const [gal, setGal]: any = useState([]);
+  // ***
+
+  // ** State modal
+  const [modal, setModal]: any = useState(false);
   // ***
 
   // *** Fetch Achivement
@@ -79,6 +84,7 @@ const mainPage: React.FC<PageProps> = () => {
 
   return (
     <main>
+      <MyDialog state={modal} setState={setModal} />
       {/* Navbar */}
       <Navbar />
       {/* Introduction */}
@@ -93,7 +99,12 @@ const mainPage: React.FC<PageProps> = () => {
           <h1 className="font-kaushan text-4xl/[3.5rem] my-4">
             Hello, I'm Mukhamad khusaini a front-end beginner, back-end
             beginner, college student, cat lover, spicy lover, unemployed,{" "}
-            <span className="font-jetBrain text-blue-700 text-xl cursor-pointer">
+            <span
+              className="font-jetBrain text-blue-700 text-xl cursor-pointer"
+              onClick={() => {
+                setModal(true);
+              }}
+            >
               Load More &gt;&gt;
             </span>
           </h1>
