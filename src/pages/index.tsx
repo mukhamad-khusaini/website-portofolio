@@ -21,6 +21,7 @@ import gh from "../images/gh.png";
 import { GoogleSpreadsheet } from "google-spreadsheet";
 import moment from "moment";
 import MyDialog from "../components/Dialog";
+import Achivement from "../components/Achivement";
 
 declare global {
   namespace NodeJS {
@@ -59,15 +60,16 @@ const mainPage: React.FC<PageProps> = () => {
       await GS.loadInfo(); // loads document properties and worksheets
       const Sheet = GS.sheetsByIndex[0];
       const rows = await Sheet.getRows();
-      const dataSet = {
-        event: rows[0].get("Nama Event"),
-        date: moment(rows[0].get("Tanggal"), "DD/MM/YYYY").format(
-          "D MMMM YYYY"
-        ),
-        achivement: rows[0].get("Capaian"),
-        img: rows[0].get("Dokumentasi"),
-      };
-      setAch(dataSet);
+      const dataArray: any = [];
+      rows.forEach((data) => {
+        dataArray.push({
+          event: data.get("Nama Event"),
+          date: moment(data.get("Tanggal"), "DD/MM/YYYY").format("D MMMM YYYY"),
+          achivement: data.get("Capaian"),
+          img: data.get("Dokumentasi").split("=")[1],
+        });
+      });
+      setAch(dataArray);
     };
 
     data();
@@ -90,7 +92,6 @@ const mainPage: React.FC<PageProps> = () => {
     data();
   }, []);
   // ***
-  console.log(ach);
 
   return (
     <main>
@@ -202,16 +203,28 @@ const mainPage: React.FC<PageProps> = () => {
       >
         <img src={titleAch} width={200} alt="Achivement" className="mb-12" />
         <div className="flex flex-row items-center justify-center gap-6">
-          <div className="bordered w-[200px] h-[200px] rounded-[100px] border-[4px] border-dashed border-white flex flex-col items-center overflow-hidden p-3 gap-2">
-            <div className="w-full h-[50%] bg-white rounded-t-full border-4 border-white overflow-hidden">
-              <img src={g2} alt="image" className="w-full" />
-            </div>
-            <div className="flex flex-col items-center font-jetBrain text-center text-white">
-              <h3 className="font-bold text-sm text-yld">Juara 3</h3>
-              <p className="text-[11px]">UNY National Innovation 2023</p>
-            </div>
-          </div>
-          <img src={comingSoon} alt="coming soon" width={200} />
+          {ach != undefined ? (
+            ach.map(
+              (data: {
+                event: string;
+                date: string;
+                achivement: string;
+                img: string;
+              }) => {
+                return (
+                  <Achivement
+                    event={data.event}
+                    achivement={data.achivement}
+                    date={data.date}
+                    img={data.img}
+                    key={data.event}
+                  />
+                );
+              }
+            )
+          ) : (
+            <img src={comingSoon} alt="coming soon" width={200} />
+          )}
         </div>
       </section>
       {/* My Gallery */}
