@@ -19,6 +19,7 @@ import ig from "../images/ig.png";
 import x from "../images/x.png";
 import gh from "../images/gh.png";
 import { GoogleSpreadsheet } from "google-spreadsheet";
+import moment from "moment";
 import MyDialog from "../components/Dialog";
 
 declare global {
@@ -36,11 +37,11 @@ export const Head: HeadFC = () => {
 
 const mainPage: React.FC<PageProps> = () => {
   // *** State Achivement
-  const [ach, setAch]: any = useState([]);
+  const [ach, setAch]: any = useState();
   // ***
 
   // *** State Gallery
-  const [gal, setGal]: any = useState([]);
+  const [gal, setGal]: any = useState();
   // ***
 
   // ** State modal
@@ -58,7 +59,15 @@ const mainPage: React.FC<PageProps> = () => {
       await GS.loadInfo(); // loads document properties and worksheets
       const Sheet = GS.sheetsByIndex[0];
       const rows = await Sheet.getRows();
-      setAch(rows[0]);
+      const dataSet = {
+        event: rows[0].get("Nama Event"),
+        date: moment(rows[0].get("Tanggal"), "DD/MM/YYYY").format(
+          "D MMMM YYYY"
+        ),
+        achivement: rows[0].get("Capaian"),
+        img: rows[0].get("Dokumentasi"),
+      };
+      setAch(dataSet);
     };
 
     data();
@@ -81,6 +90,7 @@ const mainPage: React.FC<PageProps> = () => {
     data();
   }, []);
   // ***
+  console.log(ach);
 
   return (
     <main>
@@ -202,10 +212,6 @@ const mainPage: React.FC<PageProps> = () => {
             </div>
           </div>
           <img src={comingSoon} alt="coming soon" width={200} />
-          {/* <img src={comingSoon} alt="coming soon" width={200} />
-          <img src={comingSoon} alt="coming soon" width={200} />
-          <img src={comingSoon} alt="coming soon" width={200} />
-          <img src={comingSoon} alt="coming soon" width={200} /> */}
         </div>
       </section>
       {/* My Gallery */}
