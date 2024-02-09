@@ -192,11 +192,20 @@ const mainPage: React.FC<PageProps> = () => {
       >
         <img src={titleAch} width={200} alt="Achivement" className="mb-12" />
         <div className="flex flex-row items-center justify-center gap-6">
+          <div className="bordered w-[200px] h-[200px] rounded-[100px] border-[4px] border-dashed border-white flex flex-col items-center overflow-hidden p-3 gap-2">
+            <div className="w-full h-[50%] bg-white rounded-t-full border-4 border-white overflow-hidden">
+              <img src={g2} alt="image" className="w-full" />
+            </div>
+            <div className="flex flex-col items-center font-jetBrain text-center text-white">
+              <h3 className="font-bold text-sm text-yld">Juara 3</h3>
+              <p className="text-[11px]">UNY National Innovation 2023</p>
+            </div>
+          </div>
+          <img src={comingSoon} alt="coming soon" width={200} />
+          {/* <img src={comingSoon} alt="coming soon" width={200} />
           <img src={comingSoon} alt="coming soon" width={200} />
           <img src={comingSoon} alt="coming soon" width={200} />
-          <img src={comingSoon} alt="coming soon" width={200} />
-          <img src={comingSoon} alt="coming soon" width={200} />
-          <img src={comingSoon} alt="coming soon" width={200} />
+          <img src={comingSoon} alt="coming soon" width={200} /> */}
         </div>
       </section>
       {/* My Gallery */}

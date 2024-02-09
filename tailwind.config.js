@@ -28,6 +28,9 @@ module.exports = {
         org: "#DF812B",
         yld: "#DFD42B",
       },
+      colors: {
+        yld: "#DFD42B",
+      },
     },
   },
   plugins: [],
