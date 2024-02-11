@@ -53,13 +53,13 @@ const mainPage: React.FC<PageProps> = () => {
   useEffect(() => {
     const data = async () => {
       const GS = new GoogleSpreadsheet(
-        "1ieMf4t6JGERMdQb9nbluKehaNOixu0zI4ZC_YIInIIc",
+        "1SHDGRxH1oWOKmXAus402skv0DTO2SJR45cMWLHTl_08",
         { apiKey: process.env.KEY }
       );
 
       await GS.loadInfo(); // loads document properties and worksheets
       const Sheet = GS.sheetsByIndex[0];
-      const rows = await Sheet.getRows();
+      const rows = await Sheet.getRows({ limit: 5 });
       const dataArray: any = [];
       rows.forEach((data) => {
         dataArray.push({
@@ -69,6 +69,16 @@ const mainPage: React.FC<PageProps> = () => {
           img: data.get("Dokumentasi").split("=")[1],
         });
       });
+
+      if (dataArray.length < 5) {
+        for (let i = 0; i <= 5 - dataArray.length; i++) {
+          dataArray.push({
+            type: "img",
+            key: i,
+          });
+        }
+      }
+
       setAch(dataArray);
     };
 
@@ -210,16 +220,29 @@ const mainPage: React.FC<PageProps> = () => {
                 date: string;
                 achivement: string;
                 img: string;
+                type?: string;
+                key?: number;
               }) => {
-                return (
-                  <Achivement
-                    event={data.event}
-                    achivement={data.achivement}
-                    date={data.date}
-                    img={data.img}
-                    key={data.event}
-                  />
-                );
+                if (data.type == "img") {
+                  return (
+                    <img
+                      src={comingSoon}
+                      alt="coming soon"
+                      width={200}
+                      key={data.key}
+                    />
+                  );
+                } else {
+                  return (
+                    <Achivement
+                      event={data.event}
+                      achivement={data.achivement}
+                      date={data.date}
+                      img={data.img}
+                      key={data.event}
+                    />
+                  );
+                }
               }
             )
           ) : (

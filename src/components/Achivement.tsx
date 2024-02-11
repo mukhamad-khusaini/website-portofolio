@@ -24,7 +24,7 @@ export default function Achivement({
       <div className="flex flex-col items-center font-jetBrain text-center text-white">
         <h3 className="font-bold text-sm text-yld">{achivement}</h3>
         <p className="text-[11px]">{event}</p>
-        <p className="text-[11px]">{date}</p>
+        <p className="text-[11px] text-yld">{date}</p>
       </div>
     </div>
   );

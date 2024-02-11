@@ -49,7 +49,8 @@ export default function MyDialog({
                   <div className="mt-2">
                     <p className="text-sm text-gray-500">
                       sweet lover, gamer, aspiring scholar, servant, human, rock
-                      and metal song lover, boy, quiet, introvert, second child
+                      and metal song lover, boy, quiet, introvert, second child,
+                      cigarette smoke hater, simplicity enthusiast
                     </p>
                   </div>
 
@@ -59,7 +60,7 @@ export default function MyDialog({
                       className="inline-flex justify-center rounded-md border border-transparent bg-yld px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                       onClick={closeModal}
                     >
-                      Got it, thanks!
+                      Got it 🥶🥶🥶
                     </button>
                   </div>
                 </Dialog.Panel>
