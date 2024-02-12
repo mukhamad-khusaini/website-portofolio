@@ -267,7 +267,16 @@ const mainPage: React.FC<PageProps> = () => {
               }
             })
           ) : (
-            <img src={comingSoon} alt="coming soon" width={200} />
+            <div className="w-full h-[200px] flex justify-center items-center">
+              <div
+                className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] text-white motion-reduce:animate-[spin_1.5s_linear_infinite]"
+                role="status"
+              >
+                <span className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">
+                  Loading...
+                </span>
+              </div>
+            </div>
           )}
         </div>
       </section>
@@ -404,11 +413,16 @@ const mainPage: React.FC<PageProps> = () => {
               }
             })
           ) : (
-            <img
-              src={g2}
-              alt="my picture"
-              className="h-[10rem] w-full object-cover col-span-4"
-            />
+            <div className="col-span-12 row-span-12 flex justify-center items-center">
+              <div
+                className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"
+                role="status"
+              >
+                <span className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">
+                  Loading...
+                </span>
+              </div>
+            </div>
           )}
         </div>
       </section>
@@ -417,10 +431,43 @@ const mainPage: React.FC<PageProps> = () => {
         <h3 className="font-kaushan text-white text-xl">Social Media</h3>
         <p className="font-jetBrain text-white text-[0.7rem]">Catch Me Here!</p>
         <div className="flex flex-row items-center gap-4">
-          <img src={fb} width={35} alt="FB" />
-          <img src={ig} width={35} alt="IG" />
-          <img src={x} width={35} alt="X" />
-          <img src={gh} width={35} alt="Github" />
+          <img
+            src={fb}
+            width={35}
+            alt="FB"
+            onClick={() => {
+              location.href =
+                "https://www.facebook.com/profile.php?id=100071852659180";
+            }}
+            className="cursor-pointer"
+          />
+          <img
+            src={ig}
+            width={35}
+            alt="IG"
+            className="cursor-pointer"
+            onClick={() => {
+              location.href = "https://www.instagram.com/khusaini.go.id/";
+            }}
+          />
+          <img
+            src={x}
+            width={35}
+            alt="X"
+            className="cursor-pointer"
+            onClick={() => {
+              location.href = "https://twitter.com/mukhamad_khu";
+            }}
+          />
+          <img
+            src={gh}
+            width={35}
+            alt="Github"
+            className="cursor-pointer"
+            onClick={() => {
+              location.href = "https://github.com/mukhamad-khusaini";
+            }}
+          />
         </div>
         <p className="font-jetBrain text-white text-[0.7rem]">
           &copy;copyright 2024 | All Right Reserved.
