@@ -22,6 +22,8 @@ import { GoogleSpreadsheet } from "google-spreadsheet";
 import moment from "moment";
 import MyDialog from "../components/Dialog";
 import Achivement from "../components/Achivement";
+import { DataAchivement, DataGallery } from "../../interface";
+import ImageShow from "../components/ImageShow";
 
 declare global {
   namespace NodeJS {
@@ -45,8 +47,12 @@ const mainPage: React.FC<PageProps> = () => {
   const [gal, setGal]: any = useState();
   // ***
 
-  // ** State modal
+  // ** State Modal
   const [modal, setModal]: any = useState(false);
+  // ***
+
+  // ** State Image Show
+  const [img, setImg]: any = useState({ bool: false, img: "" });
   // ***
 
   // *** Fetch Achivement
@@ -60,9 +66,9 @@ const mainPage: React.FC<PageProps> = () => {
       await GS.loadInfo(); // loads document properties and worksheets
       const Sheet = GS.sheetsByIndex[0];
       const rows = await Sheet.getRows({ limit: 5 });
-      const dataArray: any = [];
+      const dataAchivement: DataAchivement[] = [];
       rows.forEach((data) => {
-        dataArray.push({
+        dataAchivement.push({
           event: data.get("Nama Event"),
           date: moment(data.get("Tanggal"), "DD/MM/YYYY").format("D MMMM YYYY"),
           achivement: data.get("Capaian"),
@@ -70,16 +76,21 @@ const mainPage: React.FC<PageProps> = () => {
         });
       });
 
-      if (dataArray.length < 5) {
-        for (let i = 0; i <= 5 - dataArray.length; i++) {
-          dataArray.push({
+      const length = dataAchivement.length;
+      if (dataAchivement.length < 5) {
+        for (let i = 0; i < 5 - length; i++) {
+          dataAchivement.push({
+            event: "",
+            date: "",
+            achivement: "",
+            img: "",
             type: "img",
             key: i,
           });
         }
       }
 
-      setAch(dataArray);
+      setAch(dataAchivement);
     };
 
     data();
@@ -96,7 +107,25 @@ const mainPage: React.FC<PageProps> = () => {
 
       await GS.loadInfo(); // loads document properties and worksheets
       const Sheet = GS.sheetsByIndex[0];
-      const inf = await Sheet.getRows();
+      const inf = await Sheet.getRows({ limit: 7 });
+      const dataGallery: DataGallery[] = [];
+      inf.forEach((data) => {
+        dataGallery.push({
+          imgId: data.get("Gambar").split("=")[1],
+        });
+      });
+
+      const length = dataGallery.length;
+      if (dataGallery.length < 7) {
+        for (let i = 0; i < 7 - length; i++) {
+          dataGallery.push({
+            imgId: "",
+            rand: Math.ceil(Math.random() / 10),
+          });
+        }
+      }
+
+      setGal(dataGallery);
     };
 
     data();
@@ -106,6 +135,7 @@ const mainPage: React.FC<PageProps> = () => {
   return (
     <main>
       <MyDialog state={modal} setState={setModal} />
+      <ImageShow state={img} setState={setImg} />
       {/* Navbar */}
       <Navbar />
       {/* Introduction */}
@@ -214,37 +244,28 @@ const mainPage: React.FC<PageProps> = () => {
         <img src={titleAch} width={200} alt="Achivement" className="mb-12" />
         <div className="flex flex-row items-center justify-center gap-6">
           {ach != undefined ? (
-            ach.map(
-              (data: {
-                event: string;
-                date: string;
-                achivement: string;
-                img: string;
-                type?: string;
-                key?: number;
-              }) => {
-                if (data.type == "img") {
-                  return (
-                    <img
-                      src={comingSoon}
-                      alt="coming soon"
-                      width={200}
-                      key={data.key}
-                    />
-                  );
-                } else {
-                  return (
-                    <Achivement
-                      event={data.event}
-                      achivement={data.achivement}
-                      date={data.date}
-                      img={data.img}
-                      key={data.event}
-                    />
-                  );
-                }
+            ach.map((data: DataAchivement) => {
+              if (data.type == "img") {
+                return (
+                  <img
+                    src={comingSoon}
+                    alt="coming soon"
+                    width={200}
+                    key={data.key}
+                  />
+                );
+              } else {
+                return (
+                  <Achivement
+                    event={data.event}
+                    achivement={data.achivement}
+                    date={data.date}
+                    img={data.img}
+                    key={data.event}
+                  />
+                );
               }
-            )
+            })
           ) : (
             <img src={comingSoon} alt="coming soon" width={200} />
           )}
@@ -259,41 +280,136 @@ const mainPage: React.FC<PageProps> = () => {
           <span className="relative">My Gallery</span>
         </h1>
         <div className="grid grid-cols-12 items-stretch gap-4">
-          <img
-            src={g2}
-            alt="my picture"
-            className="h-[10rem] w-full object-cover col-span-4"
-          />
-          <img
-            src={g5}
-            alt="my picture"
-            className="h-[10rem] w-full object-cover col-span-3"
-          />
-          <img
-            src={g1}
-            alt="my picture"
-            className="h-[10rem] w-full object-cover col-span-3"
-          />
-          <img
-            src={g3}
-            alt="my picture"
-            className="h-[10rem] w-full object-cover col-span-2"
-          />
-          <img
-            src={g4}
-            alt="my picture"
-            className="h-[10rem] w-full object-cover col-span-3"
-          />
-          <img
-            src={g1}
-            alt="my picture"
-            className="h-[10rem] w-full object-cover col-span-3"
-          />
-          <img
-            src={g2}
-            alt="my picture"
-            className="h-[10rem] w-full object-cover col-span-6"
-          />
+          {gal != undefined ? (
+            gal.map((data: DataGallery, index: number) => {
+              switch (index) {
+                case 0:
+                  return (
+                    <img
+                      key={Math.random()}
+                      src={
+                        data.imgId
+                          ? "https://drive.google.com/thumbnail?id=" +
+                            data.imgId +
+                            "&sz=w1000"
+                          : g1
+                      }
+                      alt="my picture"
+                      className="h-[10rem] w-full object-cover col-span-4 cursor-pointer"
+                      onClick={() => setImg({ bool: true, imgId: data.imgId })}
+                    />
+                  );
+
+                case 1:
+                  return (
+                    <img
+                      key={Math.random()}
+                      src={
+                        data.imgId
+                          ? "https://drive.google.com/thumbnail?id=" +
+                            data.imgId +
+                            "&sz=w1000"
+                          : g3
+                      }
+                      alt="my picture"
+                      className="h-[10rem] w-full object-cover col-span-3 cursor-pointer"
+                      onClick={() => setImg({ bool: true, imgId: data.imgId })}
+                    />
+                  );
+
+                case 2:
+                  return (
+                    <img
+                      key={Math.random()}
+                      src={
+                        data.imgId
+                          ? "https://drive.google.com/thumbnail?id=" +
+                            data.imgId +
+                            "&sz=w1000"
+                          : g4
+                      }
+                      alt="my picture"
+                      className="h-[10rem] w-full object-cover col-span-3 cursor-pointer"
+                      onClick={() => setImg({ bool: true, imgId: data.imgId })}
+                    />
+                  );
+
+                case 3:
+                  return (
+                    <img
+                      key={Math.random()}
+                      src={
+                        data.imgId
+                          ? "https://drive.google.com/thumbnail?id=" +
+                            data.imgId +
+                            "&sz=w1000"
+                          : g5
+                      }
+                      alt="my picture"
+                      className="h-[10rem] w-full object-cover col-span-2 cursor-pointer"
+                      onClick={() => setImg({ bool: true, imgId: data.imgId })}
+                    />
+                  );
+
+                case 4:
+                  return (
+                    <img
+                      key={Math.random()}
+                      src={
+                        data.imgId
+                          ? "https://drive.google.com/thumbnail?id=" +
+                            data.imgId +
+                            "&sz=w1000"
+                          : g2
+                      }
+                      alt="my picture"
+                      className="h-[10rem] w-full object-cover col-span-3 cursor-pointer"
+                      onClick={() => setImg({ bool: true, imgId: data.imgId })}
+                    />
+                  );
+
+                case 5:
+                  return (
+                    <img
+                      key={Math.random()}
+                      src={
+                        data.imgId
+                          ? "https://drive.google.com/thumbnail?id=" +
+                            data.imgId +
+                            "&sz=w1000"
+                          : g1
+                      }
+                      alt="my picture"
+                      className="h-[10rem] w-full object-cover col-span-3 cursor-pointer"
+                      onClick={() => setImg({ bool: true, imgId: data.imgId })}
+                    />
+                  );
+
+                case 6:
+                  return (
+                    <img
+                      key={Math.random()}
+                      src={
+                        data.imgId
+                          ? "https://drive.google.com/thumbnail?id=" +
+                            data.imgId +
+                            "&sz=w1000"
+                          : g4
+                      }
+                      alt="my picture"
+                      className="h-[10rem] w-full object-cover col-span-6 cursor-pointer"
+                      onClick={() => setImg({ bool: true, imgId: data.imgId })}
+                    />
+                  );
+              }
+            })
+          ) : (
+            <img
+              src={g2}
+              alt="my picture"
+              className="h-[10rem] w-full object-cover col-span-4"
+            />
+          )}
         </div>
       </section>
       {/* Footer */}
