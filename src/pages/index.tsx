@@ -18,6 +18,7 @@ import fb from "../images/fb.png";
 import ig from "../images/ig.png";
 import x from "../images/x.png";
 import gh from "../images/gh.png";
+import profile from "../images/profile.png";
 import { GoogleSpreadsheet } from "google-spreadsheet";
 import moment from "moment";
 import MyDialog from "../components/Dialog";
@@ -33,6 +34,19 @@ declare global {
     }
   }
 }
+
+const randomStr: string[] = [
+  "up",
+  "money",
+  "up",
+  "houses",
+  "stocks",
+  "securities",
+  "cars",
+  "paradise",
+  "hell",
+  "magic",
+];
 
 export const Head: HeadFC = () => {
   return <title>Website Portofolio | Mukhamad Khusaini</title>;
@@ -53,6 +67,13 @@ const mainPage: React.FC<PageProps> = () => {
 
   // ** State Image Show
   const [img, setImg]: any = useState({ bool: false, img: "" });
+  // ***
+
+  // ** State NEVER GIVE UP
+  const [str, setStr]: any = useState("up");
+  setInterval(() => {
+    setStr(randomStr[Math.round(Math.random() * 10)]);
+  }, 6000);
   // ***
 
   // *** Fetch Achivement
@@ -120,7 +141,7 @@ const mainPage: React.FC<PageProps> = () => {
         for (let i = 0; i < 7 - length; i++) {
           dataGallery.push({
             imgId: "",
-            rand: Math.ceil(Math.random() / 10),
+            rand: Math.round(Math.random() * 10),
           });
         }
       }
@@ -136,18 +157,19 @@ const mainPage: React.FC<PageProps> = () => {
     <main>
       <MyDialog state={modal} setState={setModal} />
       <ImageShow state={img} setState={setImg} />
+
       {/* Navbar */}
       <Navbar />
       {/* Introduction */}
       <section
         id="introduction"
-        className="h-[85vh] w-full bg-vectorBg bg-right bg-no-repeat flex flex-row px-24 pt-14"
+        className="h-[100vh] lg:h-[85vh] w-full bg-vectorBg bg-right bg-no-repeat flex flex-col-reverse lg:flex-row px-24 pt-14"
       >
         <div className="flex flex-col items-start justify-center w-[60%]">
-          <h3 className="font-jetBrain text-2xl relative inline-block before:block before:absolute before:-inset-x-1 before:-inset-0 before:top-4 before:bg-yld">
+          <h3 className="font-jetBrain text-lg lg:text-2xl relative inline-block before:block before:absolute before:-inset-x-1 before:-inset-0 before:top-4 before:bg-yld">
             <span className="relative">Describe Myself!</span>
           </h3>
-          <h1 className="font-kaushan text-4xl/[3.5rem] my-4">
+          <h1 className="font-kaushan text-2xl lg:text-4xl/[3.5rem] my-4">
             Hello, I'm Mukhamad khusaini a front-end beginner, back-end
             beginner, college student, cat lover, spicy lover, unemployed,{" "}
             <span
@@ -169,8 +191,9 @@ const mainPage: React.FC<PageProps> = () => {
           </div>
         </div>
         <div className="flex flex-col items-center justify-center w-[40%]">
-          <h2 className="px-14 py-4 bg-yld font-jetBrain italic">
-            This is me btw!
+          <img src={profile} alt="profile" className="w-[40%]" />
+          <h2 className="px-14 py-3 bg-yld font-jetBrain transition-all ease-in">
+            <span className="italic">Never give {str}</span> 🤡
           </h2>
         </div>
       </section>

@@ -15,13 +15,6 @@ const config: GatsbyConfig = {
   plugins: [
     "gatsby-plugin-postcss",
     {
-      resolve: "gatsby-source-google-spreadsheets",
-      options: {
-        spreadsheetId: "1ieMf4t6JGERMdQb9nbluKehaNOixu0zI4ZC_YIInIIc",
-        credentials: require("./keys.json"),
-      },
-    },
-    {
       resolve: `gatsby-plugin-manifest`,
       options: {
         name: `Website Portofolio | Mukhamad Khusaini`,
