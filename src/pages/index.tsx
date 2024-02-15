@@ -69,13 +69,6 @@ const mainPage: React.FC<PageProps> = () => {
   const [img, setImg]: any = useState({ bool: false, img: "" });
   // ***
 
-  // ** State NEVER GIVE UP
-  const [str, setStr]: any = useState("up");
-  setInterval(() => {
-    setStr(randomStr[Math.round(Math.random() * 10)]);
-  }, 6000);
-  // ***
-
   // *** Fetch Achivement
   useEffect(() => {
     const data = async () => {
@@ -163,13 +156,13 @@ const mainPage: React.FC<PageProps> = () => {
       {/* Introduction */}
       <section
         id="introduction"
-        className="h-[100vh] lg:h-[85vh] w-full bg-vectorBg bg-right bg-no-repeat flex flex-col-reverse lg:flex-row px-24 pt-14"
+        className="h-[100vh] lg:h-[85vh] w-full bg-vectorBg bg-right bg-no-repeat flex flex-col-reverse lg:flex-row px-24 pt-14 pb-5 lg:pb-0 items-center"
       >
-        <div className="flex flex-col items-start justify-center w-[60%]">
-          <h3 className="font-jetBrain text-lg lg:text-2xl relative inline-block before:block before:absolute before:-inset-x-1 before:-inset-0 before:top-4 before:bg-yld">
+        <div className="flex flex-col items-center lg:items-start justify-center w-[80%]">
+          <h3 className="font-jetBrain text-lg lg:text-2xl relative hidden lg:inline-block before:block before:absolute before:-inset-x-1 before:-inset-0 before:top-4 before:bg-yld">
             <span className="relative">Describe Myself!</span>
           </h3>
-          <h1 className="font-kaushan text-2xl lg:text-4xl/[3.5rem] my-4">
+          <h1 className="font-kaushan text-center lg:text-start text-2xl lg:text-4xl/[3.5rem] my-4">
             Hello, I'm Mukhamad khusaini a front-end beginner, back-end
             beginner, college student, cat lover, spicy lover, unemployed,{" "}
             <span
@@ -181,8 +174,8 @@ const mainPage: React.FC<PageProps> = () => {
               Load More &gt;&gt;
             </span>
           </h1>
-          <div>
-            <span className="font-jetBrain inline-block overflow-hidden py-[2px] px-[10px] border-2 border-yld mr-5 cursor-pointer relative before:absolute before:w-4 before:h-4 before:-inset-0 before:-top-2 before:-left-2 before:rotate-45 before:bg-yld">
+          <div className="flex flex-col justify-center items-center gap-2 lg:block text-sm lg:text-lg">
+            <span className="font-jetBrain inline-block overflow-hidden py-[2px] px-[10px] border-2 border-yld mr-0 lg:mr-5 cursor-pointer relative before:absolute before:w-4 before:h-4 before:-inset-0 before:-top-2 before:-left-2 before:rotate-45 before:bg-yld">
               Donate your money here!
             </span>
             <span className="font-jetBrain inline-block overflow-hidden py-[2px] px-[10px] border-2 border-org cursor-pointer relative before:absolute before:w-4 before:h-4 before:-inset-0 before:-top-2 before:-left-2 before:rotate-45 before:bg-org">
@@ -190,10 +183,10 @@ const mainPage: React.FC<PageProps> = () => {
             </span>
           </div>
         </div>
-        <div className="flex flex-col items-center justify-center w-[40%]">
-          <img src={profile} alt="profile" className="w-[40%]" />
-          <h2 className="px-14 py-3 bg-yld font-jetBrain transition-all ease-in">
-            <span className="italic">Never give {str}</span> 🤡
+        <div className="flex flex-col items-center justify-center w-[70%] mb-4 lg:mb-0">
+          <img src={profile} alt="profile" className="w-[35%] lg:w-[40%] " />
+          <h2 className="px-14 py-2 lg:py-3 bg-yld font-jetBrain transition-all ease-in">
+            <span className="italic">Never give cars</span> 🤡
           </h2>
         </div>
       </section>

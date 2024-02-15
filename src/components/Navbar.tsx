@@ -5,7 +5,7 @@ export default function Navbar() {
   return (
     <>
       <nav className="w-full absolute flex flex-row align-middle justify-center lg:justify-between py-5 px-10">
-        <div className="w-[20%] flex items-center lg:justify-start">
+        <div className="w-[20%] flex items-center justify-center lg:justify-start">
           <img width={100} src={logo} alt="logo" />
         </div>
         <div className="w-[70%] hidden lg:flex flex-row justify-around items-center font-jetBrain">
