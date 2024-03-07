@@ -35,19 +35,6 @@ declare global {
   }
 }
 
-const randomStr: string[] = [
-  "up",
-  "money",
-  "up",
-  "houses",
-  "stocks",
-  "securities",
-  "cars",
-  "paradise",
-  "hell",
-  "magic",
-];
-
 export const Head: HeadFC = () => {
   return <title>Website Portofolio | Mukhamad Khusaini</title>;
 };
@@ -184,7 +171,7 @@ const mainPage: React.FC<PageProps> = () => {
           </div>
         </div>
         <div className="flex flex-col items-center justify-center w-[70%] mb-4 lg:mb-0">
-          <img src={profile} alt="profile" className="w-[35%] lg:w-[40%] " />
+          <img src={profile} alt="profile" className="w-[40%] lg:w-[40%] " />
           <h2 className="px-14 py-2 lg:py-3 bg-yld font-jetBrain transition-all ease-in">
             <span className="italic">Never give cars</span> 🤡
           </h2>
@@ -197,19 +184,27 @@ const mainPage: React.FC<PageProps> = () => {
       >
         <div className="flex flex-row items-center justify-center w-[20%]">
           <img className="mr-4" src={poly} alt="." />
-          <h2 className="font-kaushan text-white text-xl">Landing Page</h2>
+          <h2 className="font-kaushan text-white md:text-[1rem] lg:text-xl">
+            Landing Page
+          </h2>
         </div>
-        <div className="flex flex-row items-center justify-center w-[20%]">
+        <div className="flex flex-row items-center justify-center w-[25%]">
           <img className="mr-4" src={poly} alt="." />
-          <h2 className="font-kaushan text-white text-xl">Personal Website</h2>
+          <h2 className="font-kaushan text-white md:text-[1rem] lg:text-xl">
+            Personal Website
+          </h2>
         </div>
-        <div className="flex flex-row items-center justify-center w-[20%]">
+        <div className="flex flex-row items-center justify-center w-[15%]">
           <img className="mr-4" src={poly} alt="." />
-          <h2 className="font-kaushan text-white text-xl">Blog Site</h2>
+          <h2 className="font-kaushan text-white md:text-[1rem] lg:text-xl">
+            Blog Site
+          </h2>
         </div>
         <div className="flex flex-row items-center justify-center w-[20%]">
           <img className="mr-4" src={cancel} alt="x" />
-          <h2 className="font-kaushan text-white text-xl">Blockchain</h2>
+          <h2 className="font-kaushan text-white md:text-[1rem] lg:text-xl">
+            Blockchain
+          </h2>
         </div>
       </section>
       {/* My Projects */}
@@ -220,7 +215,7 @@ const mainPage: React.FC<PageProps> = () => {
         <h1 className="font-kaushan text-3xl relative mb-14 before:block before:absolute before:-inset-x-3 before:-inset-y-2 before:top-5 before:bg-yld">
           <span className="relative">My Projects</span>
         </h1>
-        <div className="flex flex-row items-center justify-between w-full">
+        <div className="flex flex-col lg:flex-row items-center justify-between w-full">
           <div className="w-[23%] h-[20rem] bg-gry border-2 border-black rounded-xl p-7 flex flex-col items-start gap-6">
             <img src={ui} alt="ui" />
             <h3 className="font-jetBrain text-xl">UI/UX Design</h3>
